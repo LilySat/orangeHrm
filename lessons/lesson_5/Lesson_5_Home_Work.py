@@ -12,12 +12,20 @@ def create_and_print_variables():
     print("Greeting:", a_greeting)
     print("Number:", a_number)
 
+    greeting = 'Good morning'
+    number = 42
+    print(greeting, number)
+
 
 def sum_two_numbers():
     """Task 3: Create two variables with numbers and print their sum."""
     number_a = 4
     number_b = 3
     print(number_a + number_b)
+
+    a = 10
+    b = 5
+    print("the sum is:", a + b)
 
 
 def greet_user():
@@ -26,6 +34,9 @@ def greet_user():
     name = input()
     print("Hello,", name)
 
+    name = input('What is your name?')
+    print ('Hello', name)
+
 def create_list():
     """Task 5: Create a list named `fruits` with any three fruits and print the list."""
     print("\n=== Fruits ===")
@@ -33,6 +44,9 @@ def create_list():
     b = ("\n banana")
     c = ("\n orange")
     print("List of fruits:", a, b, c)
+
+    fruits = ['apple', 'banana', 'cherry']
+    print(fruits)
 
 def add_fruit_to_list(fruits):
     """Task 6: Add another fruit to the `fruits` list and print the updated list."""
@@ -45,6 +59,11 @@ def add_fruit_to_list(fruits):
     a_list.append("peach")
     print("New list:", a_list)
 
+    fruits = ['apple', 'banana', 'cherry']
+    print(fruits)
+    fruits.append('orange')
+    print(fruits)
+
 def print_fruits(fruits):
     """Task 7: Print each fruit in the `fruits` list using a loop."""
     a = ("apple")
@@ -54,17 +73,24 @@ def print_fruits(fruits):
     for i in [a, b, c]:
         print(i)
 
+    fruits = ['apple', 'banana', 'cherry']
+    for fruit in fruits:
+        print(fruit)
+
 def create_and_print_dictionary():
     """Task 8: Create a dictionary named `person` with keys 'name' and 'age', then print the dictionary."""
     Dict = {1: 'Name', 2: 'Age'}
     print("Person Dictionary: ", Dict)
 
+    person = {"name": "John", "age": 38}
+    print(person)
+
 def update_age_in_dictionary(person):
     """Task 9: Update the 'age' in the `person` dictionary to a new value and print the updated dictionary."""
-    Dict = {1: 'Name', 2: 'Age'}
-    print("Person Dictionary: ", Dict)
-    Dict[2] = 'New Age'
-    print("\nDictionary after update: ", Dict)
+    person = {"name": "John", "age": 38}
+    print(person)
+    person['age'] = 44
+    print(person)
 
 def check_number_greater_than_10():
     """Task 10: Check if a number stored in a variable is greater than 10 and print a relevant message."""
@@ -73,6 +99,13 @@ def check_number_greater_than_10():
         print("Number is greater than 10")
     else:
         print("Number is 10 or less")
+
+    number = 12
+    if number > 10:
+        print(number, 'is greater than 10')
+    else:
+        print(number, 'is less than 10')
+
 
 def main():
     # Call each function to execute the tasks
