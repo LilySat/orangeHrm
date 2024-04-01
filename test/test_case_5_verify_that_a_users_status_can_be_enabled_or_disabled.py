@@ -9,14 +9,13 @@
 # The Message: 'No Records Found' should be displayed.
 
 def test_case_5_verify_that_user_status_can_be_enabled_or_disabled(app):
-    app.orangeHrm.openUrl("https://portnov_admin-trials711.orangehrmlive.com/client/#/dashboard")
+    app.orangeHrm.openUrl("https://portnov_administrator-trials712.orangehrmlive.com")
     app.orangeHrm.login_to_the_application()
     app.assert_that(app.orangeHrm.get_header_text()).is_equal_to('Employee Management')
     app.orangeHrm.sideMenu.click_on_side_menu_button('HR Administration')
-    app.orangeHrm.hrAdministration.click_filter_icon()
+    app.orangeHrm.step.specified_element_is_present(app.orangeHrm.hrAdministration.table_header, 30)
     app.orangeHrm.hrAdministration.click_filter_icon()
     app.orangeHrm.popUp.click_on_username_field()
     app.orangeHrm.popUp.add_filter_username('NotAnAdmin')
     app.orangeHrm.popUp.click_on_search()
-
-# I have no idea how to confirm empty results page and the 'No Records Found' message :(
+    app.assert_that(app.orangeHrm.popUp.confirm_popup_message()).is_equal_to('No Records Found')

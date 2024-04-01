@@ -1,3 +1,5 @@
+import time
+
 from fixture.step import StepHelper
 from selenium.webdriver.remote.webdriver import WebDriver
 
@@ -11,7 +13,10 @@ class PopUp:
     user_exists_error_massage = "//span[text()='Already exists']"
     filter_username_field = "//input[@id='systemuser_uname_filter']"
     search_button = "//a[@ng-click='modal.search()']"
-    admin_user = "//*[text()='admin']"
+    admin_user = "tbody td:nth-child(2) span"
+    password_error = "//input[@id='password']/following-sibling::span"
+    confirm_password_error = "//input[@id='confirmpassword']/following-sibling::span"
+    strength_indicator = "span[class ='password-strength-check']"
 
     def __init__(self, step: StepHelper, wd: WebDriver):
         self.step = step
@@ -30,6 +35,7 @@ class PopUp:
         self.step.input_text(self.confirm_password_field, text)
 
     def click_on_save(self):
+        time.sleep(20)
         self.step.click_on_element(self.save_button)
 
     def get_user_exist_error(self):
@@ -46,3 +52,13 @@ class PopUp:
 
     def user_admin_exist(self):
         return self.step.get_element_text(self.admin_user)
+
+    def password_required(self):
+        return self.step.get_element_text(self.password_error)
+
+    def confirm_password_required(self):
+        return self.step.get_element_text(self.confirm_password_error)
+
+    def check_strength_indicator(self):
+        time.sleep(5)
+        return self.step.get_element_text(self.strength_indicator)
