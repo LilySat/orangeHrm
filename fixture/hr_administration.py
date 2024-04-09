@@ -18,6 +18,7 @@ class HrAdministration:
         self.wd = wd
 
     def click_add_user(self):
+        self.step.wait_for_element(self.first_table_row, 40)
         self.step.click_on_element(self.add_user_button)
 
     def click_on_filter(self):

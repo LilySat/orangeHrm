@@ -10,6 +10,16 @@
 # Expected Result:
 # As the user types, an autocomplete dropdown should appear with employee name suggestions.
 
+def test_case_7_verify_employe_name_autocomplete_suggestion(app):
+    app.orangeHrm.openUrl()
+    app.orangeHrm.login_to_the_application()
+    app.assert_that(app.orangeHrm.get_header_text()).is_equal_to('Employee Management')
+    app.orangeHrm.sideMenu.click_on_side_menu_button('HR Administration')
+    app.orangeHrm.hrAdministration.click_on_filter()
+    app.orangeHrm.popUp.start_typing_employee_name('ad')
+    app.assert_that(app.orangeHrm.popUp.confirm_employee_name_dropdown()).contains('ad')
+
+
 # -----------------------------------------------------------------------------------
 
 # Test Case 7_1: Verify No Results Found Error Message
@@ -23,6 +33,15 @@
 # 5. Enter a non-existing employee name in the 'Employee Name' field.
 # Expected Result:
 # A message indicating 'no results found' should appear if no employee names match the entered value.
+
+def test_case_7_1_verify_no_results_found_error_message(app):
+    app.orangeHrm.openUrl()
+    app.orangeHrm.login_to_the_application()
+    app.assert_that(app.orangeHrm.get_header_text()).is_equal_to('Employee Management')
+    app.orangeHrm.sideMenu.click_on_side_menu_button('HR Administration')
+    app.orangeHrm.hrAdministration.click_on_filter()
+    app.orangeHrm.popUp.start_typing_employee_name('adm')
+    app.assert_that(app.orangeHrm.popUp.confirm_employee_name_no_results()).is_equal_to('No results found')
 
 # -----------------------------------------------------------------------------------
 
@@ -38,6 +57,16 @@
 # 6. Assert values from all drop-downs in test (you should assert values separately for each drop-down) using assert_that(['a','b']).is_equal_to(['a','b'])
 # Expected Result:
 # All dropdowns in the 'Filter Users' pop-up should display their default values.
+
+def test_case_7_2_verify_no_results_found_error_message(app):
+    app.orangeHrm.openUrl()
+    app.orangeHrm.login_to_the_application()
+    app.assert_that(app.orangeHrm.get_header_text()).is_equal_to('Employee Management')
+    app.orangeHrm.sideMenu.click_on_side_menu_button('HR Administration')
+    app.orangeHrm.hrAdministration.click_on_filter()
+    app.orangeHrm.popUp.click_on_ess_role_input_field()
+
+
 
 # -----------------------------------------------------------------------------------
 
@@ -70,3 +99,23 @@
 # 7. Reopen the 'Filter Users' pop-up by clicking on the 'Filter' button.
 # Expected Result:
 # The 'Filter Users' pop-up should close upon clicking the 'Cancel' button and upon reopening, the previously selected values should be retained.
+
+
+def test_case_7_4_verify_cancel_button_functionality(app):
+    app.orangeHrm.openUrl()
+    app.orangeHrm.login_to_the_application()
+    app.assert_that(app.orangeHrm.get_header_text()).is_equal_to('Employee Management')
+    app.orangeHrm.sideMenu.click_on_side_menu_button('HR Administration')
+    app.orangeHrm.hrAdministration.click_on_filter()
+    app.orangeHrm.popUp.set_username('Test')
+    app.orangeHrm.popUp.set_employee_name('Test')
+    app.orangeHrm.popUp.select_ess_role_dropdown_option()
+    app.orangeHrm.popUp.select_admin_role_dropdown_option()
+    app.orangeHrm.popUp.select_supervisor_role_dropdown_option()
+    app.orangeHrm.popUp.select_status_dropdown_option()
+    app.orangeHrm.popUp.select_location_dropdown_option()
+    app.orangeHrm.popUp.click_cancel_button()
+    app.orangeHrm.hrAdministration.click_on_filter()
+
+
+
