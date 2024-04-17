@@ -14,6 +14,10 @@ class DemonstrationAppDemoQa:
     droppable = '#droppable'
     old_style_drop_down = '#oldSelectMenu'
     file_upload_input = '#uploadFile'
+    drag_box = '#dragBox'
+    select_one_drop_down = '#selectOne'
+    select_one_dropdown_options = 'div[id^="react-select"][class*="option"]'
+
 
     def __init__(self, app):
         self.app = app
@@ -50,3 +54,15 @@ class DemonstrationAppDemoQa:
         self.step.scroll_element_into_center(self.file_upload_input)
         file_input = self.wd.find_element(By.CSS_SELECTOR, self.file_upload_input)
         file_input.send_keys(file_path)
+
+    def drag_to_different_position(self):
+        # Wait for the draggable and droppable elements to be visible
+        source_element = self.step.wait_for_element(self.drag_box)
+        target_element = self.step.wait_for_element(self.droppable)
+        self.step.scroll_element_into_center(self.droppable)
+        # Perform the drag and drop action
+        ActionChains(self.wd).drag_and_drop(source_element, target_element).perform()
+
+    def select_value_from_select_one_drop_down(self, text):
+        self.step.click_on_element(self.select_one_drop_down)
+        self.step.click_element_by_text(self.select_one_dropdown_options, text)
