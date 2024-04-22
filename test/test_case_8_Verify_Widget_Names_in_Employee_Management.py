@@ -33,4 +33,4 @@ def test_case_8_verify_retrieval_of_widget_names_in_employee_management_componen
     app.assert_that(app.orangeHrm.get_header_text()).is_equal_to('Employee Management')
     app.orangeHrm.sideMenu.click_on_side_menu_button("Employee Management")
     app.orangeHrm.employeeManagement.click_home()
-    app.assert_that(app.orangeHrm.employeeManagement.get_widgets_headers().sort()).is_equal_to(list_of_expected_widgets.sort())
+    app.assert_that(sorted(app.orangeHrm.employeeManagement.get_widgets_headers())).is_equal_to(sorted(list_of_expected_widgets))
