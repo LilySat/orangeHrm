@@ -5,13 +5,13 @@ from selenium.webdriver.remote.webdriver import WebDriver
 
 
 class PopUp:
-    user_name_field = '#systemuser_uname_filter'
-    employee_name_field = '#employee_name_filter_value'
+    user_name_field = '#user_name'
+    employee_name_field = '#selectedEmployee_value'
     password_field = '#password'
     confirm_password_field = '#confirmpassword'
     save_button = '#modal-save-button'
     user_exists_error_massage = "//span[text()='Already exists']"
-    user_name_filter_field = '//input[@id="systemuser_uname_filter"]'
+    user_name_filter_field = '#systemuser_uname_filter'
     filter_popup_table = '//div[@class="modal modal-fixed-footer open"]//h4[text()="Filter Users"]'
     filter_search_button = '//div[@class="modal modal-fixed-footer open"]//a[text()="Search"]'
     pass_required_message = '//input[@id="password"]/following::span[text()="Required"]'
@@ -23,7 +23,7 @@ class PopUp:
     confirm_password_error_massage = '//input[@id="confirmpassword"]/following-sibling::span'
     strength_indicator = '.password-strength-check'
     autocomplete_dropdown = '#employee_name_filter_dropdown span.angucomplete-title'
-    message_no_results = "//div[contains(@id, 'employee_name_filter_dropdown') and not(contains(@class, 'ng-hide'))]//div[contains(@class, 'angucomplete-searching') and not(contains(@class, 'ng-hide')) and text()='No results found']"
+    message_no_results = '#toast-container'
     ess_role_input_field = '#essroles_inputfileddiv input'
     ess_role_dropdown_values = '#essroles_inputfileddiv li'
     supervisor_role_input_field = '#supervisorroles_inputfileddiv input'
@@ -42,6 +42,7 @@ class PopUp:
     list_of_drop_down_values = 'ul[id^="select-options"][style*="display: block"] li span'
     employment_status_drop_down = '//label[text()="Employment Status"]/preceding-sibling::div//input'
     location_drop_down = '//label[text()="Location"]/preceding-sibling::div//input'
+    empty_space_for_password = '//div[@class="password-help-text-container"]'
 
     def __init__(self, step: StepHelper, wd: WebDriver):
         self.step = step
@@ -49,6 +50,9 @@ class PopUp:
 
     def set_username(self, text):
         self.step.input_text(self.user_name_field, text)
+
+    def set_username_in_filter(self, text):
+        self.step.input_text(self.user_name_filter_field, text)
 
     def set_employee_name(self, text):
         self.step.input_text(self.employee_name_field, text)
@@ -169,3 +173,6 @@ class PopUp:
             self.set_employee_name(employee_name)
         if ess_role is not None:
             self.set_ess_role_input_dropdown(ess_role)
+
+    def click_empty_space(self):
+        self.step.click_on_element(self.empty_space_for_password)

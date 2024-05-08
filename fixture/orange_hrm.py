@@ -28,7 +28,7 @@ class OrangeHrm:
         self.popUp = PopUp(self.step, self.wd)
         self.employeeManagement = EmployeeManagement(self.step, self.wd)
         self.reportsAndAnalytics = ReportsAndAnalytics(self.step, self.wd)
-    def openUrl(self, url="https://portnov_administrator-trials712.orangehrmlive.com"):
+    def openUrl(self, url="https://admin_portnov-trials712.orangehrmlive.com/"):
         self.wd.get(url)
 
     def set_username(self, username):

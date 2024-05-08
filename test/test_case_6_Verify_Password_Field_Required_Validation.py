@@ -10,6 +10,8 @@
 # 6. Click on the 'Save' button to trigger validation.
 # Expected Result:
 # An error message stating 'Required' should appear under both 'Password' and 'Confirm Password' fields.
+import time
+
 
 # -----------------------------------------------------------------------------------
 
@@ -87,7 +89,7 @@
 # The password strength indicator should display a 'Strongest' message.
 
 def test_case_6_1_Test_Password_Field_Required(app):
-    app.orangeHrm.openUrl("https://portnov_administrator-trials712.orangehrmlive.com")
+    app.orangeHrm.openUrl()
     app.orangeHrm.login_to_the_application()
     app.assert_that(app.orangeHrm.get_header_text()).is_equal_to('Employee Management')
     app.orangeHrm.sideMenu.click_on_side_menu_button('HR Administration')
@@ -96,23 +98,22 @@ def test_case_6_1_Test_Password_Field_Required(app):
     app.orangeHrm.step.specified_element_is_present('.oxd-circle-loader')
     app.orangeHrm.popUp.set_password('')
     app.orangeHrm.popUp.click_on_save()
-    app.assert_that(app.orangeHrm.popUp.password_required()).is_equal_to('Required')
-    app.assert_that(app.orangeHrm.popUp.confirm_password_required()).is_equal_to('Required')
+    app.assert_that(app.orangeHrm.popUp.get_password_error()).is_equal_to('Required')
+    app.assert_that(app.orangeHrm.popUp.get_confirm_password_error()).is_equal_to('Required')
 
 def test_case_6_2_verify_password_minimum_length_validation(app):
-    app.orangeHrm.openUrl("https://portnov_administrator-trials712.orangehrmlive.com")
+    app.orangeHrm.openUrl()
     app.orangeHrm.login_to_the_application()
     app.assert_that(app.orangeHrm.get_header_text()).is_equal_to('Employee Management')
     app.orangeHrm.sideMenu.click_on_side_menu_button('HR Administration')
-    app.orangeHrm.step.specified_element_is_present('div[id="systemUserDiv"]')
     app.orangeHrm.hrAdministration.click_add_user()
     app.orangeHrm.step.specified_element_is_present('.oxd-circle-loader')
     app.orangeHrm.popUp.set_password('1')
     app.orangeHrm.popUp.click_on_save()
-    app.assert_that(app.orangeHrm.popUp.password_required()).is_equal_to('Your password should have at least 8 characters.')
+    app.assert_that(app.orangeHrm.popUp.get_password_error()).is_equal_to('Your password should have at least 8 characters.')
 
 def test_case_6_3_verify_password_strength_indicator_very_weak(app):
-    app.orangeHrm.openUrl("https://portnov_administrator-trials712.orangehrmlive.com")
+    app.orangeHrm.openUrl()
     app.orangeHrm.login_to_the_application()
     app.assert_that(app.orangeHrm.get_header_text()).is_equal_to('Employee Management')
     app.orangeHrm.sideMenu.click_on_side_menu_button('HR Administration')
@@ -121,10 +122,11 @@ def test_case_6_3_verify_password_strength_indicator_very_weak(app):
     app.orangeHrm.step.specified_element_is_present('.oxd-circle-loader')
     app.orangeHrm.popUp.set_password('00000000')
     app.orangeHrm.popUp.click_empty_space()
-    app.assert_that(app.orangeHrm.popUp.check_strength_indicator()).is_equal_to('Very Weak')
+    time.sleep(3)
+    app.assert_that(app.orangeHrm.popUp.get_strength_indicator_text()).is_equal_to('Very Weak')
 
 def test_case_6_4_verify_password_strength_indicator_weak(app):
-    app.orangeHrm.openUrl("https://portnov_administrator-trials712.orangehrmlive.com")
+    app.orangeHrm.openUrl()
     app.orangeHrm.login_to_the_application()
     app.assert_that(app.orangeHrm.get_header_text()).is_equal_to('Employee Management')
     app.orangeHrm.sideMenu.click_on_side_menu_button('HR Administration')
@@ -133,10 +135,11 @@ def test_case_6_4_verify_password_strength_indicator_weak(app):
     app.orangeHrm.step.specified_element_is_present('.oxd-circle-loader')
     app.orangeHrm.popUp.set_password('00000000..')
     app.orangeHrm.popUp.click_empty_space()
-    app.assert_that(app.orangeHrm.popUp.check_strength_indicator()).is_equal_to('Weak')
+    time.sleep(3)
+    app.assert_that(app.orangeHrm.popUp.get_strength_indicator_text()).is_equal_to('Weak')
 
 def test_case_6_5_verify_password_strength_indicator_better(app):
-    app.orangeHrm.openUrl("https://portnov_administrator-trials712.orangehrmlive.com")
+    app.orangeHrm.openUrl()
     app.orangeHrm.login_to_the_application()
     app.assert_that(app.orangeHrm.get_header_text()).is_equal_to('Employee Management')
     app.orangeHrm.sideMenu.click_on_side_menu_button('HR Administration')
@@ -145,10 +148,11 @@ def test_case_6_5_verify_password_strength_indicator_better(app):
     app.orangeHrm.step.specified_element_is_present('.oxd-circle-loader')
     app.orangeHrm.popUp.set_password('00000000A..')
     app.orangeHrm.popUp.click_empty_space()
-    app.assert_that(app.orangeHrm.popUp.check_strength_indicator()).is_equal_to('Better')
+    time.sleep(3)
+    app.assert_that(app.orangeHrm.popUp.get_strength_indicator_text()).is_equal_to('Better')
 
 def test_case_6_6_verify_password_strength_indicator_Strongest(app):
-    app.orangeHrm.openUrl("https://portnov_administrator-trials712.orangehrmlive.com")
+    app.orangeHrm.openUrl()
     app.orangeHrm.login_to_the_application()
     app.assert_that(app.orangeHrm.get_header_text()).is_equal_to('Employee Management')
     app.orangeHrm.sideMenu.click_on_side_menu_button('HR Administration')
@@ -157,4 +161,5 @@ def test_case_6_6_verify_password_strength_indicator_Strongest(app):
     app.orangeHrm.step.specified_element_is_present('.oxd-circle-loader')
     app.orangeHrm.popUp.set_password('Nydhig-rorpak-9fojsy')
     app.orangeHrm.popUp.click_empty_space()
-    app.assert_that(app.orangeHrm.popUp.check_strength_indicator()).is_equal_to('Strongest')
+    time.sleep(3)
+    app.assert_that(app.orangeHrm.popUp.get_strength_indicator_text()).is_equal_to('Strongest')

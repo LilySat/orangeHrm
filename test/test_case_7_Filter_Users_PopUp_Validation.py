@@ -84,8 +84,9 @@ def test_case_7_1_Verify_No_Results_Found_Error_Message(app):
     app.orangeHrm.login_to_the_application()
     app.orangeHrm.sideMenu.click_on_side_menu_button('HR Administration')
     app.orangeHrm.hrAdministration.click_on_filter()
-    app.orangeHrm.popUp.set_employee_name('Murat')
-    app.assert_that(app.orangeHrm.popUp.get_no_results_message()).is_equal_to('No results found')
+    app.orangeHrm.popUp.set_username_in_filter('NotAnAdmin')
+    app.orangeHrm.popUp.click_on_search()
+    app.assert_that(app.orangeHrm.popUp.get_no_results_message()).is_equal_to('No Records Found')
 
 def test_case_7_2_Verify_Dropdown_Default_Values(app):
     app.orangeHrm.openUrl()
