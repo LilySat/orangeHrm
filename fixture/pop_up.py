@@ -5,13 +5,13 @@ from selenium.webdriver.remote.webdriver import WebDriver
 
 
 class PopUp:
-    user_name_field = '#user_name'
-    employee_name_field = '#selectedEmployee_value'
+    user_name_field = '#systemuser_uname_filter'
+    employee_name_field = '#employee_name_filter_value'
     password_field = '#password'
     confirm_password_field = '#confirmpassword'
     save_button = '#modal-save-button'
     user_exists_error_massage = "//span[text()='Already exists']"
-    user_name_filter_field = '#systemuser_uname_filter'
+    user_name_filter_field = '//input[@id="systemuser_uname_filter"]'
     filter_popup_table = '//div[@class="modal modal-fixed-footer open"]//h4[text()="Filter Users"]'
     filter_search_button = '//div[@class="modal modal-fixed-footer open"]//a[text()="Search"]'
     pass_required_message = '//input[@id="password"]/following::span[text()="Required"]'
@@ -42,7 +42,6 @@ class PopUp:
     list_of_drop_down_values = 'ul[id^="select-options"][style*="display: block"] li span'
     employment_status_drop_down = '//label[text()="Employment Status"]/preceding-sibling::div//input'
     location_drop_down = '//label[text()="Location"]/preceding-sibling::div//input'
-    empty_space_for_password = '//div[@class="password-help-text-container"]'
 
     def __init__(self, step: StepHelper, wd: WebDriver):
         self.step = step
@@ -50,9 +49,6 @@ class PopUp:
 
     def set_username(self, text):
         self.step.input_text(self.user_name_field, text)
-
-    def set_username_in_filter(self, text):
-        self.step.input_text(self.user_name_filter_field, text)
 
     def set_employee_name(self, text):
         self.step.input_text(self.employee_name_field, text)
@@ -176,3 +172,17 @@ class PopUp:
 
     def click_empty_space(self):
         self.step.click_on_element(self.empty_space_for_password)
+
+
+class TrainingFilter:
+    title_field = 'div[class="input-field row"] #searchCourse_title'
+    iframe = "#noncoreIframe"
+
+    def __init__(self, step: StepHelper, wd: WebDriver):
+        self.step = step
+        self.wd = wd
+
+    def set_title(self, title):
+        self.step.switch_to_iframe(self.iframe)
+        self.step.input_text(self.title_field, title)
+        self.step.switch_to_default_content()
