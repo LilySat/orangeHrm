@@ -39,12 +39,16 @@ class Training:
         self.step.switch_to_default_content()
 
     def click_on_add_course_button(self):
+        self.step.switch_to_iframe(self.iframe)
         self.step.wait_for_element(self.add_course_button)
         self.step.click_on_element(self.add_course_button)
+        self.step.switch_to_default_content()
 
     def add_course_title(self):
+        self.step.switch_to_iframe(self.iframe)
         self.step.wait_for_element(self.add_course_header)
         self.step.input_text(self.title_input_field, text)
+        self.step.switch_to_default_content()
 
     def add_coordinator(self):
         self.step.input_text(self.coordinator_input_field, text)

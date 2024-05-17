@@ -10,3 +10,9 @@
 # Step 8: TODO - Verify if the candidate is displayed in the table
 # Step 9: TODO - Click on the candidate's name from the table
 # Step 10: TODO - In the new opened tab, verify the previously selected fields (First Name, Last Name, Email, and Resume) during creation
+
+def test_case_28_verify_added_candidates_in_recruitment_section(app):
+    app.orangeHrm.openUrl()
+    app.orangeHrm.login_to_the_application()
+    app.orangeHrm.sideMenu.click_on_side_menu_button('Recruitment (ATS)')
+    app.orangeHrm.addCandidate.c

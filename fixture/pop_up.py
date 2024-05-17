@@ -42,10 +42,12 @@ class PopUp:
     list_of_drop_down_values = 'ul[id^="select-options"][style*="display: block"] li span'
     employment_status_drop_down = '//label[text()="Employment Status"]/preceding-sibling::div//input'
     location_drop_down = '//label[text()="Location"]/preceding-sibling::div//input'
+    test_123 = '456'
 
     def __init__(self, step: StepHelper, wd: WebDriver):
         self.step = step
         self.wd = wd
+        self.training_filter = TrainingFilter(step, wd)
 
     def set_username(self, text):
         self.step.input_text(self.user_name_field, text)

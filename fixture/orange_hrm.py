@@ -1,5 +1,6 @@
 import os
 
+from fixture.recruitment_ats import RecruitmentAts
 from fixture.employee_management import EmployeeManagement
 from fixture.hr_administration import HrAdministration
 from fixture.pop_up import PopUp
@@ -31,6 +32,7 @@ class OrangeHrm:
         self.employeeManagement = EmployeeManagement(self.step, self.wd)
         self.reportsAndAnalytics = ReportsAndAnalytics(self.step, self.wd)
         self.training = Training(self.step, self.wd)
+        self.recruitment_ats = RecruitmentAts(self.step, self.wd)
 
     def openUrl(self, url="https://admin_portnov-trials712.orangehrmlive.com"):
         self.wd.get(url)
