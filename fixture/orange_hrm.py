@@ -36,7 +36,7 @@ class OrangeHrm:
         self.recruitment_ats = RecruitmentAts(self.step, self.wd)
         self.leave = Leave(self.step, self.wd)
 
-    def openUrl(self, url="https://admin_portnov-trials712.orangehrmlive.com"):
+    def openUrl(self, url="https://portnov01-trials713.orangehrmlive.com"):
         self.wd.get(url)
 
     def set_username(self, username):
