@@ -2,6 +2,8 @@ import os
 import time
 
 from selenium.webdriver.remote.webdriver import WebDriver
+
+from fixture.calendar import Calendar, CalendarType
 from fixture.step import StepHelper
 from helpers.utils import Utils
 
@@ -19,6 +21,7 @@ class RecruitmentAts:
     def __init__(self, step: StepHelper, wd: WebDriver):
         self.step = step
         self.wd = wd
+        self.calendar = Calendar(self.step, CalendarType.OXD)
 
     def wait_for_page_load(self):
         self.step.specified_element_is_not_present(self.page_loading_animation, 20)
